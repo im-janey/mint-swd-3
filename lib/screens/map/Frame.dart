@@ -74,7 +74,11 @@ class MapPage extends StatefulWidget {
   final List<dynamic> places;
   final String collectionName;
 
-  MapPage({super.key, required this.places, required this.collectionName});
+  MapPage({
+    super.key,
+    required this.places,
+    required this.collectionName,
+  });
 
   @override
   _MapPageState createState() => _MapPageState();

@@ -30,7 +30,12 @@ final Product cafeProduct = Product(
 
 final Product parkProduct = Product(
   name: 'park',
-  subCategories: ['공원', '산책로', '자연', '숲'],
+  subCategories: [
+    '공원',
+    '산책로',
+    '자연',
+    '숲',
+  ],
 );
 
 final Product playProduct = Product(
@@ -44,7 +49,13 @@ final Product playProduct = Product(
 
 final Product shoppingProduct = Product(
   name: 'mall',
-  subCategories: ['백화점', '쇼핑몰', '상점', '쇼핑', '마트'],
+  subCategories: [
+    '백화점',
+    '쇼핑몰',
+    '상점',
+    '쇼핑',
+    '마트',
+  ],
 );
 
 final Product displayProduct = Product(

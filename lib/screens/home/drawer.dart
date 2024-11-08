@@ -2,12 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/course/add_place.dart';
 import 'package:flutter_application_1/screens/detail/Myreview.dart';
 import 'package:flutter_application_1/screens/detail/favoriate.dart';
 import 'package:flutter_application_1/screens/home/profile.dart';
 import 'package:flutter_application_1/screens/intro/login.dart';
-
-import '../course/new.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -19,7 +18,7 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  String _profileImageUrl = '';
+  final String _profileImageUrl = '';
   final TextEditingController _nicknameController = TextEditingController();
 
   @override
@@ -140,7 +139,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Cos(),
+                            builder: (context) => const AddPlacePage(),
                           ),
                         ),
                         icon: const Icon(Icons.work_outline),

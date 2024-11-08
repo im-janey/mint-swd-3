@@ -32,7 +32,7 @@ class MakeCosPage extends StatelessWidget {
                       onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Modal(),
+                          builder: (context) => const Modal(),
                         ),
                       ),
                       icon: const Icon(

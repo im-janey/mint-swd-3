@@ -1,11 +1,41 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/course/make_cos.dart';
 
-class Modal extends StatelessWidget {
-  final TextEditingController _courseNameController = TextEditingController();
+class Modal extends StatefulWidget {
+  const Modal({super.key});
 
-  Modal({super.key});
+  @override
+  State<Modal> createState() => _ModalState();
+}
+
+class _ModalState extends State<Modal> {
+  final TextEditingController _cosNameController = TextEditingController();
+
+  Future<void> _saveCosName() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final cosName = _cosNameController.text.trim();
+      if (cosName.isNotEmpty) {
+        try {
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .update({'cosname': cosName});
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MakeCosPage(),
+            ),
+          );
+        } catch (e) {
+          print('Error saving cos name: $e');
+          // You might want to show an error message to the user here
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +53,6 @@ class Modal extends StatelessWidget {
         ],
       ),
       content: TextField(
-        controller: _courseNameController,
         style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
@@ -61,7 +90,7 @@ class Modal extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            _createCourse(context);
+            _saveCosName;
           },
           child: Text(
             '설정',
@@ -70,30 +99,5 @@ class Modal extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  void _createCourse(BuildContext context) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final courseName = _courseNameController.text.trim();
-      if (courseName.isNotEmpty) {
-        try {
-          await FirebaseFirestore.instance.collection('courses').add({
-            'name': courseName,
-            'createdAt': FieldValue.serverTimestamp(),
-            'createdBy': user.uid,
-          });
-          Navigator.of(context).pop(); // 모달 닫기
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('코스가 성공적으로 생성되었습니다.')),
-          );
-        } catch (e) {
-          print('Error creating course: $e');
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('코스 생성 중 오류가 발생했습니다.')),
-          );
-        }
-      }
-    }
   }
 }
