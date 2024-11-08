@@ -4,9 +4,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/detail/Myreview.dart';
 import 'package:flutter_application_1/screens/detail/favoriate.dart';
-import 'package:flutter_application_1/screens/home/home.dart';
 import 'package:flutter_application_1/screens/home/profile.dart';
 import 'package:flutter_application_1/screens/intro/login.dart';
+
+import '../course/new.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -139,7 +140,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Home(),
+                            builder: (context) => const Cos(),
                           ),
                         ),
                         icon: const Icon(Icons.work_outline),
